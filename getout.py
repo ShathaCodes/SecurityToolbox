@@ -1,5 +1,6 @@
 import time
 
+
 def getout():
     print("\n.")
     print("\n...")
