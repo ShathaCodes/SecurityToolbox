@@ -155,7 +155,7 @@ def menu(username):
         choix_2 = int(input("\n Your choice : "))
 
         if choix_2 == 1:
-            import RSACipher
+            import Ciphers.RSACipher as RSACipher
            
         elif choix_2 == 2:
             message = input("\nMessage :  ")
