@@ -1,28 +1,26 @@
-from getout import getout
 from menu import menu
-from welcome_hacker_flag import welcome_hacker
-
+from skull import skull
+from login import signin, signup
+import pyfiglet
 
 def main():
-    print("\n──────────────────Welcome hacker──────────────────\n")
-    welcome_hacker()
+    print("\Welcome\n")
+    skull()
 
-    print("\n\n──────────────────Identify yourself──────────────────\n")
-    print("\t1. Login")
-    print("\t2. Register")
+    print("\n\n────────────────────────────────────────────────\n")
+    print("\t1. Login?")
+    print("\t2. Register?")
     choice = int(input("\nYour choice : "))
     if choice == 1:
-        print("login")
-        import login
-        #if login correct => go to menu
-        menu()
-    elif choice ==2:
-        print("register")
-        import register
-        #after registration => go to login
+        test = signin()
+        if (test == False):
+            print(pyfiglet.figlet_format("Wrong choice"))
+        else:
+            menu(test)
+    elif choice == 2:
+        signup()
     else:
-        getout()
-
+        print(pyfiglet.figlet_format("Wrong choice"))
 
 
 if __name__ == '__main__':

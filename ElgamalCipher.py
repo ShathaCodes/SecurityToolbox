@@ -3,9 +3,9 @@ from Crypto.Util import number
 
 class ElgamalCipher(object):
 
-    def __init__(self): 
+    def __init__(self,bits): 
         #generate random prime p
-        self.q = number.getPrime(15)
+        self.q = number.getPrime(bits-1)
         self.p = self.q *2 -1
         while True:
             self.g = number.getRandomRange(3, self.q+1) 
@@ -30,5 +30,4 @@ class ElgamalCipher(object):
     def decrypt(self, u,v):
         # message v/(u^x) % p
         decrypted = (v * pow(u,-self.x, self.p)) % self.p
-        print(decrypted)
         return decrypted

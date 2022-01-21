@@ -1,11 +1,11 @@
 import math
-import pyfiglet
+
 from tools import prime_check, pgcd, verify_primary_numbers, calculate_d
 
 listOfSymbols = ['0', '1', '2', '3', '4', '5',
                  '6', '7', '8', '9', ' ', '!', '.', '?', '#']
 
-print(pyfiglet.figlet_format("RSA Encryption / Decryption"))
+print("RSA Encryption / Decryption")
 
 
 print("First we need two prime numbers p and q:")
@@ -125,4 +125,3 @@ elif(choose == '2'):
     print("Your decrypted message is:", decrypt(private, message))
 else:
     print("You entered the wrong option.")
-    print("Thank you for using the RSA Encryptor. Goodbye!")

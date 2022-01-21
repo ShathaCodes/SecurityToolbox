@@ -1,9 +1,11 @@
 import random
 import smtplib
+import pyfiglet
 import getpass
 import pymysql
 import hashlib
 import re
+import time
 otp = ''.join([str(random.randint(0, 9)) for i in range(8)])
 
 
@@ -25,7 +27,7 @@ def signin():
         else:
 
             con = pymysql.connect(
-                host='localhost', user='root', password='', database='register')
+                host='localhost', user='root', password='', database='projetsecuritegl4')
             cur = con.cursor()
             cur.execute('select * from person where email=%s and mdp=%s',
                         (mailentry, final_password))
@@ -35,6 +37,18 @@ def signin():
                 return False
 
             else:
+               
+
+                server = smtplib.SMTP('smtp.gmail.com', 587)
+                server.starttls()
+                password = 'vyevicnteckfojqm'
+                server.login('projetsecuritegl4@gmail.com', password)
+                msg = f'Hello , Your OTP is ' + str(otp)
+                sender = 'projetsecuritegl4@gmail.com'
+                receiver = mailentry
+                server.sendmail(sender, receiver, msg)
+
+                """
                 server = smtplib.SMTP('smtp.gmail.com', 587)
                 server.starttls()
                 password = 'xtybuzzpsvcudjuu'
@@ -42,7 +56,8 @@ def signin():
                 msg = 'Hello, Your OTP is ' + str(otp)
                 sender = 'projetssigl4@gmail.com'
                 receiver = mailentry
-                server.sendmail(sender, receiver, msg)
+                server.sendmail(sender, receiver, msg) """
+
 
                 def login():
                     if otpentry == '':
@@ -63,9 +78,9 @@ def signin():
                 username = cur.fetchone()
             con.close()
             if (x == True):
-                print(username)
-                print(x)
-                return x, username
+                print(pyfiglet.figlet_format(username[0]+" !", font = "5lineoblique"))
+                time.sleep(2)
+                return username[0]
             else:
                 return False
 
@@ -102,7 +117,7 @@ def signup():
     else:
         try:
             con = pymysql.connect(
-                host='localhost', user='root', password='', database='register')
+                host='localhost', user='root', password='', database='projetsecuritegl4')
             cur = con.cursor()
             cur.execute('select * from person where email=%s', entryemail)
             row = cur.fetchone()
@@ -118,10 +133,3 @@ def signup():
 
         except Exception as e:
             print('Error', f"Error due to: {e}")
-
-
-x = input("Do you have an account? (YES/NO) ")
-if (x == 'YES'):
-    signin()
-else:
-    signup()
