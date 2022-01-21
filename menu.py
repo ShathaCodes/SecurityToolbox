@@ -1,8 +1,8 @@
 import base64
 from Crypto.Hash import SHA256, MD5, SHA1
-from AESCipher import AESCipher
-from DESCipher import DESCipher
-from ElgamalCipher import ElgamalCipher
+from Ciphers.AESCipher import AESCipher
+from Ciphers.DESCipher import DESCipher
+from Ciphers.ElgamalCipher import ElgamalCipher
 from client import chat_client
 import time
 import pyfiglet
@@ -145,9 +145,6 @@ def menu(username):
             encrypted = cipher.encrypt(message)
             print("\nEncrypt :  ", encrypted.hex())
             print("\nDecrypt :  ", cipher.decrypt(encrypted).decode())
-            
-
-
         else:
             print(pyfiglet.figlet_format("Wrong choice"))
 
@@ -158,9 +155,8 @@ def menu(username):
         choix_2 = int(input("\n Your choice : "))
 
         if choix_2 == 1:
-            import RSA
+            import RSACipher
            
-
         elif choix_2 == 2:
             message = input("\nMessage :  ")
             nchars = len(message)

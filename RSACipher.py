@@ -5,8 +5,6 @@ from tools import prime_check, pgcd, verify_primary_numbers, calculate_d
 listOfSymbols = ['0', '1', '2', '3', '4', '5',
                  '6', '7', '8', '9', ' ', '!', '.', '?', '#']
 
-print("RSA Encryption / Decryption")
-
 
 print("First we need two prime numbers p and q:")
 p = int(input("Value of p: "))
