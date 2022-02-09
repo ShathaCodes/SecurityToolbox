@@ -131,20 +131,41 @@ def menu(username):
         choix_2 = int(input("\n Your choice : "))
 
         if choix_2 == 1:
+            print("\n\t1- Crypt")
+            print("\t2- Decrypt")
+
+            choix_3 = int(input("\n Your choice : "))
             message = input("\nMessage :  ")
             cipher = DESCipher()
-            encrypted = cipher.encrypt(message)
-            print("\nEncrypt :  ", encrypted.hex())
-            print("\nDecrypt :  ", cipher.decrypt(encrypted).decode())
-            menu(username)
 
+            if choix_3 == 1:
+                encrypted = cipher.encrypt(message)
+                print("\nEncrypt :  ", encrypted.hex())
+            
+            elif choix_3 == 2:
+                print("\nDecrypt :  ", cipher.decrypt(message).decode())
+            
+            else:
+                print(pyfiglet.figlet_format("Wrong choice"))
 
         elif choix_2 == 2:
+            print("\n\t1- Crypt")
+            print("\t2- Decrypt")
+
+            choix_3 = int(input("\n Your choice : "))
             message = input("\nMessage :  ")
             cipher = AESCipher()
-            encrypted = cipher.encrypt(message)
-            print("\nEncrypt :  ", encrypted.hex())
-            print("\nDecrypt :  ", cipher.decrypt(encrypted).decode())
+
+            if choix_3 == 1:
+                encrypted = cipher.encrypt(message)
+                print("\nEncrypt :  ", encrypted.hex())
+            
+            elif choix_3 == 2:
+                print("\nDecrypt :  ", cipher.decrypt(message).decode())
+            
+            else:
+                print(pyfiglet.figlet_format("Wrong choice"))
+
         else:
             print(pyfiglet.figlet_format("Wrong choice"))
 
@@ -158,17 +179,25 @@ def menu(username):
             import Ciphers.RSACipher as RSACipher
            
         elif choix_2 == 2:
-            message = input("\nMessage :  ")
-            nchars = len(message)
-            raw = sum(ord(message[byte])<<8*(nchars-byte-1) for byte in range(nchars))
-            cipher = ElgamalCipher(16)
-            u,v = cipher.encrypt(raw)
-            print("\nEncrypt :  ( " , u, " , ",v, " )" )
-            decrypted = cipher.decrypt(u,v)
-            plaintext = ''.join(chr((decrypted>>8*(nchars-byte-1))&0xFF) for byte in range(nchars))
-            print("\nDecrypt :  " , plaintext )
-            
+            print("\n\t1- Crypt")
+            print("\t2- Decrypt")
 
+            choix_3 = int(input("\n Your choice : "))
+            cipher = ElgamalCipher(16)
+
+            if choix_3 == 1:
+                message = input("\nMessage :  ")
+                u,v = cipher.encrypt(message)
+                print("\nEncrypt :  ( " , u, " , ",v, " )" )
+            
+            elif choix_3 == 2:
+                u = input("\n u=  ")
+                v = input("\n v=  ")
+                decrypted = cipher.decrypt(u,v)
+                print("\nDecrypt :  " , decrypted )
+            
+            else:
+                print(pyfiglet.figlet_format("Wrong choice"))
 
         else:
             print(pyfiglet.figlet_format("Wrong choice"))
